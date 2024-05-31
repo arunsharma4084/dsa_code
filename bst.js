@@ -145,9 +145,26 @@ class Tree{
 }
 
 const tree = new Tree();
-tree.add(1);
+tree.add(10);
+tree.add(5);
 tree.add(2);
-tree.add(3);
+tree.add(6);
+tree.add(20);
+tree.add(25);
+tree.add(23);
+tree.add(21);
+tree.add(15);
+tree.add(28);
+tree.add(27);
+tree.add(31);
+tree.add(26);
+tree.add(39);
+// tree.remove(39);
+// // tree.remove(20);
+// tree.remove(25);
+tree.remove(10);
 
 console.log(tree);
-
+console.log(tree.find(6));
+console.log(tree.find(7));
+console.log(tree.find(39));
