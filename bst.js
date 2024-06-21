@@ -124,6 +124,56 @@ class Node{
         
         return this.right.findNextSmallerNode();
     }
+
+    preOrderTraversal(node, result){
+        if(node !== null){
+            result.push(node.value);
+            this.preOrderTraversal(node.left, result);
+            this.preOrderTraversal(node.right, result);
+        }
+        return result;
+    }
+
+    inOrderTraversal(node, result){
+        if(node !== null){
+            this.preOrderTraversal(node.left, result);
+            result.push(node.value);
+            this.preOrderTraversal(node.right, result);
+        }
+        return result;
+    }
+
+    postOrderTraversal(node, result){
+        if(node !== null){
+            this.preOrderTraversal(node.left, result);
+            this.preOrderTraversal(node.right, result);
+            result.push(node.value);
+        }
+        return result;
+    }
+
+    levelOrderTraversal(){
+        const result = [];
+        const queue = [];
+
+        if(this !== null){
+            queue.push(this);
+        }
+
+        while(queue.length){
+            const node = queue.shift();
+            result.push(node.value);
+
+            if(node.left !== null){
+                queue.push(node.left);
+            }
+            if(node.right !== null){
+                queue.push(node.right);
+            }
+        }
+
+        return result;
+    }
 }
 
 class Tree{
@@ -141,6 +191,22 @@ class Tree{
 
     find(value){
         return this.root.find(value);
+    }
+
+    preOrderTraversal(){
+        return this.root.preOrderTraversal(this.root, []);
+    }
+
+    inOrderTraversal(){
+        return this.root.inOrderTraversal(this.root, []);
+    }
+
+    postOrderTraversal(){
+        return this.root.postOrderTraversal(this.root, []);
+    }
+
+    levelOrderTraversal(){
+        return this.root.levelOrderTraversal();
     }
 }
 
@@ -164,7 +230,12 @@ tree.add(39);
 // tree.remove(25);
 tree.remove(10);
 
-console.log(tree);
-console.log(tree.find(6));
-console.log(tree.find(7));
-console.log(tree.find(39));
+// console.log(tree);
+// console.log(tree.find(6));
+// console.log(tree.find(7));
+// console.log(tree.find(39));
+
+console.log(tree.preOrderTraversal());
+console.log(tree.inOrderTraversal());
+console.log(tree.postOrderTraversal());
+console.log(tree.levelOrderTraversal());
