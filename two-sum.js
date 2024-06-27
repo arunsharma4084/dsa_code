@@ -1,12 +1,13 @@
 function twoSum(array, target){
-    const complementTable = {};
+    const complementTable = new Map();
 
     for(let i = 0; i < array.length; i++){
-        if(complementTable[array[i]] !== undefined){
-            return [i, complementTable[array[i]]];
+        const difference = target - array[i];
+
+        if(complementTable.has(difference)){
+            return [i, complementTable.get(difference)];
         } else {
-            const difference = target - array[i];
-            complementTable[difference] = i;
+            complementTable.set(array[i], i);
         }
     }
 }
